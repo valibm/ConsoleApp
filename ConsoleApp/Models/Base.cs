@@ -9,7 +9,7 @@ namespace ConsoleApp.Models
         private static int _idCounter;
 
         public int Id { get; set; }
-        public string Kind { get; set; }
+        protected string Kind { get; set; }
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
         public static DateTime CreatedDate { get; set; }
@@ -18,12 +18,15 @@ namespace ConsoleApp.Models
         {
             _idCounter = 0;
         }
-        public Base(string name, string kind)
+        public Base()
         {
-            Kind = kind;
+
+        }
+        public Base(string name)
+        {
             Name = name;
             Id = ++_idCounter;
         }
-        public abstract string GetInformation();
+
     }
 }

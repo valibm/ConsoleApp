@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using ConsoleApp.Extensions;
 
 namespace ConsoleApp.Models
 {
@@ -40,16 +39,39 @@ namespace ConsoleApp.Models
             newArray[^1] = input;
             _array = newArray;
         }
+        /// <summary>
+        /// Changes the length of array to a specified newLength
+        /// </summary>
+        /// <param name="array">Array that needs it's length changed</param>
+        /// <param name="newLength">New length of the array</param>
+        /// <returns></returns>
         public static T[] CustomResize( T[] array, int newLength)
         {
-            int loopCount = 0;
-            loopCount = newLength > array.Length ? array.Length : newLength;
+            int loopCount = newLength > array.Length ? array.Length : newLength;
             T[] newArray = new T[newLength];
             for (int i = 0; i < loopCount; i++)
             {
                 newArray[i] = array[i];
             }
             return newArray;
+        }
+        /// <summary>
+        /// Prints Elements of the array
+        /// </summary>
+        public void PrintElements()
+        {
+            foreach (var item in _array)
+            {
+                Console.WriteLine(item.ToString());
+            }
+        }
+        /// <summary>
+        /// Prints specified element of the array
+        /// </summary>
+        /// <param name="index">Index of printed element</param>
+        public void PrintElements(int index)
+        {
+            Console.WriteLine(_array[index].ToString());
         }
 
         public IEnumerator GetEnumerator()
