@@ -8,5 +8,7 @@ namespace ConsoleApp.Helpers
     {
         public const string InvalidInputMessage = "Invalid Input! Please try again.";
         public const string OutOfBulletMessage = "You're out of bullet.";
+        public const string InvalidCapacityMessage = "Capacity is not acceptable.";
+        public const string WrongCaliberMessage = "Caliber is not acceptable";
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ConsoleApp.Exceptions;
+using ConsoleApp.Helpers;
 
 namespace ConsoleApp.Models
 {
@@ -15,7 +17,7 @@ namespace ConsoleApp.Models
             {
                 if (_caliber < 0)
                 {
-                    Console.WriteLine("Invalid input! Please try again.");
+                    throw new InvalidCaliberException(Constants.WrongCaliberMessage);
                 }
                 _caliber = value;
             }

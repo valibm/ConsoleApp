@@ -2,6 +2,7 @@
 using ConsoleApp.Models;
 using ConsoleApp.Exceptions;
 using ConsoleApp.Helpers;
+using Indexer1;
 
 namespace ConsoleApp
 {
@@ -182,6 +183,7 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
 |  |       /         
 |  /      |");
             Shoot:
+                Console.WriteLine($"{chosenGun[0].CurrentBulletCount}/{chosenGun[0].Capacity} ammo left");
                 Console.WriteLine("Press f to shoot\n" +
                                   "Press 0 to leave");
                 string input3 = GetInput<string>("answer").ToLower();
@@ -220,6 +222,7 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
 |  |       /         
 |  /      |");
             Shoot:
+                Console.WriteLine($"{chosenGun[0].CurrentBulletCount}/{chosenGun[0].Capacity} ammo left");
                 Console.WriteLine("Press f to shoot once\n" +
                                   "Press b to burst shoot\n" +
                                   "Press g to auto fire\n" +
@@ -280,6 +283,7 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
 |  |       /         
 |  /      |");
             Shoot:
+                Console.WriteLine($"{chosenGun[0].CurrentBulletCount}/{chosenGun[0].Capacity} ammo left");
                 Console.WriteLine("Press f to shoot once\n" +
                                   "Press g to auto fire\n" +
                                   "Press 0 to leave");
@@ -330,8 +334,9 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
 |  |       /         
 |  /      |");
                 Shoot:
+                Console.WriteLine($"{chosenGun[0].CurrentBulletCount}/{chosenGun[0].Capacity} ammo left");
                 Console.WriteLine("Press f to shoot\n" +
-                                  "Press 0 to leave");
+                                  "Press 0 to get back inside");
                 string input3 = GetInput<string>("answer").ToLower();
                 switch (input3)
                 {
@@ -347,7 +352,7 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                         Console.WriteLine(Constants.OutOfBulletMessage);
                         goto Reload;
                     case "0":
-                        return;
+                        goto Inside;
                     default:
                         Console.WriteLine(Constants.InvalidInputMessage);
                         Console.Clear();
@@ -374,6 +379,9 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                 }
                 chosenGun[0].Reload();
             }
+            Inside:
+            Console.WriteLine();
+
         }
         /// <summary>
         /// Gets generic type input from console

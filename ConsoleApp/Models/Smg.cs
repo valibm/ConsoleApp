@@ -4,6 +4,7 @@ using System.Text;
 using ConsoleApp.Interfaces;
 using ConsoleApp.Helpers;
 using ConsoleApp.Exceptions;
+using Indexer1;
 
 namespace ConsoleApp.Models
 {
@@ -16,7 +17,7 @@ namespace ConsoleApp.Models
             {
                 if (_capacity < 0 && _capacity > 45)
                 {
-                    throw new CapacityOutOfRangeException("Capacity is not acceptable.");
+                    throw new CapacityOutOfRangeException(Constants.InvalidCapacityMessage);
                 }
                 _capacity = value;
             }
@@ -30,9 +31,13 @@ namespace ConsoleApp.Models
         public Smg(string name, Bullet bulletType) :base(name, bulletType)
         {
         }
+        public override string GetInfo()
+        {
+            return $"{Id}.{Kind}|{Name} - is a handheld lightweight machine gun, using {BulletType} cartridge";
+        }
         public override string ToString()
         {
-            return $"{Id}.{Kind}|{Name} - is a handheld lightweight machine gun, using {BulletType} cartridge";        
+            return $"{Id}.{Kind}|{Name}";        
         }
         public void Shoot()
         {

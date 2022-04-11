@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
-namespace ConsoleApp.Models
+namespace Indexer1
 {
-    internal class Indexer<T> :IEnumerable
+    public class Indexer<T> : IEnumerable
     {
         private static T[] _array;
         public T this[int index]
@@ -45,7 +43,7 @@ namespace ConsoleApp.Models
         /// <param name="array">Array that needs it's length changed</param>
         /// <param name="newLength">New length of the array</param>
         /// <returns></returns>
-        public static T[] CustomResize( T[] array, int newLength)
+        public static T[] CustomResize(T[] array, int newLength)
         {
             int loopCount = newLength > array.Length ? array.Length : newLength;
             T[] newArray = new T[newLength];
@@ -58,20 +56,21 @@ namespace ConsoleApp.Models
         /// <summary>
         /// Prints Elements of the array
         /// </summary>
-        public void PrintElements()
+        public string PrintElements()
         {
             foreach (var item in _array)
             {
-                Console.WriteLine(item.ToString());
+                return item.ToString();
             }
+            throw new ArgumentNullException();
         }
         /// <summary>
         /// Prints specified element of the array
         /// </summary>
         /// <param name="index">Index of printed element</param>
-        public void PrintElements(int index)
+        public string PrintElements(int index)
         {
-            Console.WriteLine(_array[index].ToString());
+            return _array[index].ToString();
         }
 
         public IEnumerator GetEnumerator()

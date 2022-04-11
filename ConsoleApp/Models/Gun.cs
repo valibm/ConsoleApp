@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using ConsoleApp.Interfaces;
 using System.Text;
+using ConsoleApp.Exceptions;
+using ConsoleApp.Helpers;
 
 namespace ConsoleApp.Models
 {
-    internal class Gun : Base
+    internal abstract class Gun : Base
     {
         protected int _capacity;
         public virtual int Capacity
@@ -15,7 +17,7 @@ namespace ConsoleApp.Models
             {
                 if (_capacity < 0 && value > _capacity)
                 {
-                    throw new IndexOutOfRangeException();
+                    throw new CapacityOutOfRangeException(Constants.InvalidCapacityMessage);
                 } 
             } 
         }
@@ -30,6 +32,7 @@ namespace ConsoleApp.Models
             CurrentBulletCount = Capacity;
             BulletType = bulletType;
         }
+        public abstract string GetInfo();
         public override string ToString()
         {
             return $"{Id}.{Kind}|{Name}";

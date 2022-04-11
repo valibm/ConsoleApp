@@ -16,7 +16,7 @@ namespace ConsoleApp.Models
             {
                 if (_capacity < 0 && _capacity > 45)
                 {
-                    throw new CapacityOutOfRangeException("Capacity is not acceptable.");
+                    throw new CapacityOutOfRangeException(Constants.InvalidCapacityMessage);
                 }
                 _capacity = value;
             }
@@ -31,9 +31,13 @@ namespace ConsoleApp.Models
         {
 
         }
-        public override string ToString()
+        public override string GetInfo()
         {
             return $"{Id}.{Kind}|{Name} - is a lightweight rifle which may be set to fire automatically or semi-automatically, using {BulletType} cartridge";
+        }
+        public override string ToString()
+        {
+            return $"{Id}.{Kind}|{Name}";
         }
         public void Shoot()
         {
