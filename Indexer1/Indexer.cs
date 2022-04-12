@@ -31,6 +31,10 @@ namespace Indexer1
         {
             _array = new T[index];
         }
+        /// <summary>
+        /// Adds elements to a generic type Indexer.
+        /// </summary>
+        /// <param name="input"></param>
         public void Add(T input)
         {
             T[] newArray = CustomResize(_array, _array.Length + 1);
@@ -38,7 +42,7 @@ namespace Indexer1
             _array = newArray;
         }
         /// <summary>
-        /// Changes the length of array to a specified newLength
+        /// Changes the length of Indexer to a specified newLength
         /// </summary>
         /// <param name="array">Array that needs it's length changed</param>
         /// <param name="newLength">New length of the array</param>
@@ -54,23 +58,29 @@ namespace Indexer1
             return newArray;
         }
         /// <summary>
-        /// Prints Elements of the array
+        /// Removes elements inside the Indexer
         /// </summary>
-        public string PrintElements()
+        public void Empty()
         {
-            foreach (var item in _array)
-            {
-                return item.ToString();
-            }
-            throw new ArgumentNullException();
+            _array = new T[0];
         }
         /// <summary>
-        /// Prints specified element of the array
+        /// Prints Elements of the Indexer
+        /// </summary>
+        public void PrintElements()
+        {
+            for (int i = 0; i < _array.Length; i++)
+            {
+                Console.WriteLine(_array[i].ToString());
+            }
+        }
+        /// <summary>
+        /// Prints specified element of the Indexer
         /// </summary>
         /// <param name="index">Index of printed element</param>
-        public string PrintElements(int index)
+        public void PrintElements(int index)
         {
-            return _array[index].ToString();
+            Console.WriteLine(_array[index].ToString()); 
         }
 
         public IEnumerator GetEnumerator()

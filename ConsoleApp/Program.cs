@@ -38,7 +38,6 @@ namespace ConsoleApp
             guns.Add(barret);
             guns.Add(dragunov);
             #endregion
-        Menu:
             Console.WriteLine(@"               
                .__                                              
 __  _  __ ____ |  |   ____  ____   _____   ____                 
@@ -90,7 +89,8 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
  -- . ''           :'              `--._ ---------`--._-- . ''    -- . ''
           -- . ''       -- . ''         `--._ _________`--._   -- . ''
 :'                 -- . ''          -- . ''  `--._----------`--._");
-            Console.WriteLine("Press 1 to choose a weapon from our inventory or create one for yourself\n" +
+        Menu:
+            Console.WriteLine("Press 1 to list the weapons in our inventory or create one for yourself\n" +
                               "Press 0 to leave");
             
             string input = GetInput<string>("answer");
@@ -99,7 +99,7 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
             {
                 case "1":
                     Console.Clear();
-                    guns.PrintElements();
+                    guns.PrintElements(); 
                     Console.WriteLine("9.Create your weapon");
                     break;
                 case "0":
@@ -109,55 +109,56 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                     Console.WriteLine(Constants.InvalidInputMessage);
                     goto Menu;
             }
+            Console.WriteLine("Please choose a weapon\n" +
+                              "Press 0 to leave");
             TryAgain:
             string input2 = GetInput<string>("answer");
             switch (input2)
             {
                 case "1":
                     Console.Clear();
-                    guns.PrintElements(0);
                     chosenGun.Add(guns[0]);
+                    Console.WriteLine(chosenGun[0].GetInfo());
                     break;
                 case "2":
                     Console.Clear();
-                    guns.PrintElements(1);
                     chosenGun.Add(guns[1]);
+                    Console.WriteLine(chosenGun[0].GetInfo());
                     break;
                 case "3":
                     Console.Clear();
-                    guns.PrintElements(2);
                     chosenGun.Add(guns[2]);
+                    Console.WriteLine(chosenGun[0].GetInfo());
                     break;
                 case "4":
                     Console.Clear();
-                    guns.PrintElements(3);
                     chosenGun.Add(guns[3]);
+                    Console.WriteLine(chosenGun[0].GetInfo());
                     break;
                 case "5":
                     Console.Clear();
-                    guns.PrintElements(4);
                     chosenGun.Add(guns[4]);
+                    Console.WriteLine(chosenGun[0].GetInfo());
                     break;
                 case "6":
                     Console.Clear();
-                    guns.PrintElements(5);
                     chosenGun.Add(guns[5]);
+                    Console.WriteLine(chosenGun[0].GetInfo());
                     break;
                 case "7":
                     Console.Clear();
-                    guns.PrintElements(6);
                     chosenGun.Add(guns[6]);
+                    Console.WriteLine(chosenGun[0].GetInfo());
                     break;
                 case "8":
                     Console.Clear();
-                    guns.PrintElements(7);
                     chosenGun.Add(guns[7]);
+                    Console.WriteLine(chosenGun[0].GetInfo());
                     break;
                 case "9":
                     Console.Clear();
-                    guns.Add(CreateGun());
-                    guns.PrintElements(8);
-                    chosenGun.Add(guns[8]);
+                    chosenGun.Add(CreateGun());
+                    Console.WriteLine(chosenGun[0].GetInfo()); 
                     break;
                 case "0":
                     Console.Clear();
@@ -185,23 +186,26 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
             Shoot:
                 Console.WriteLine($"{chosenGun[0].CurrentBulletCount}/{chosenGun[0].Capacity} ammo left");
                 Console.WriteLine("Press f to shoot\n" +
-                                  "Press 0 to leave");
+                                  "Press 0 to get back inside");
                 string input3 = GetInput<string>("answer").ToLower();
                 switch (input3)
                 {
                     case "f":
+                        Console.Clear();
                         if (chosenGun[0].CurrentBulletCount != 0)
                         {
-                            Console.Clear();
                             chosenGun[0].Shoot();
                             Console.WriteLine($"{chosenGun[0].CurrentBulletCount}/{chosenGun[0].Capacity} ammo left");
+                            Console.Clear();
                             goto Shoot;
                         }
                         Console.Clear();
                         Console.WriteLine(Constants.OutOfBulletMessage);
                         goto Reload;
                     case "0":
-                        return;
+                        Console.Clear();
+                        chosenGun.Empty();
+                        goto Menu;
                     default:
                         Console.WriteLine(Constants.InvalidInputMessage);
                         Console.Clear();
@@ -226,14 +230,14 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                 Console.WriteLine("Press f to shoot once\n" +
                                   "Press b to burst shoot\n" +
                                   "Press g to auto fire\n" +
-                                  "Press 0 to leave");
+                                  "Press 0 to go back");
                 string input3 = GetInput<string>("answer").ToLower();
                 switch (input3)
                 {
                     case "f":
+                        Console.Clear();
                         if (chosenGun[0].CurrentBulletCount != 0)
                         {
-                            Console.Clear();
                             chosenGun[0].Shoot();
                             Console.WriteLine($"{chosenGun[0].CurrentBulletCount}/{chosenGun[0].Capacity} ammo left");
                             goto Shoot;
@@ -242,6 +246,7 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                         Console.WriteLine(Constants.OutOfBulletMessage);
                         goto Reload;
                     case "b":
+                        Console.Clear();
                         if (chosenGun[0].CurrentBulletCount < 3)
                         {
                             Console.Clear();
@@ -262,7 +267,9 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                         Console.WriteLine(Constants.OutOfBulletMessage);
                         goto Reload;
                     case "0":
-                        return;
+                        Console.Clear();
+                        chosenGun.Empty();
+                        goto Menu;
                     default:
                         Console.WriteLine(Constants.InvalidInputMessage);
                         Console.Clear();
@@ -286,14 +293,14 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                 Console.WriteLine($"{chosenGun[0].CurrentBulletCount}/{chosenGun[0].Capacity} ammo left");
                 Console.WriteLine("Press f to shoot once\n" +
                                   "Press g to auto fire\n" +
-                                  "Press 0 to leave");
+                                  "Press 0 to go back");
                 string input3 = GetInput<string>("answer").ToLower();
                 switch (input3)
                 {
                     case "f":
+                        Console.Clear();
                         if (chosenGun[0].CurrentBulletCount != 0)
                         {
-                            Console.Clear();
                             chosenGun[0].Shoot();
                             Console.WriteLine($"{chosenGun[0].CurrentBulletCount}/{chosenGun[0].Capacity} ammo left");
                             goto Shoot;
@@ -312,13 +319,14 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                         Console.WriteLine(Constants.OutOfBulletMessage);
                         goto Reload;
                     case "0":
-                        return;
+                        Console.Clear();
+                        chosenGun.Empty();
+                        goto Menu;
                     default:
                         Console.WriteLine(Constants.InvalidInputMessage);
                         Console.Clear();
                         break;
                 }
-
             }
             else
             {
@@ -352,7 +360,9 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                         Console.WriteLine(Constants.OutOfBulletMessage);
                         goto Reload;
                     case "0":
-                        goto Inside;
+                        Console.Clear();
+                        chosenGun.Empty();
+                        goto Menu;
                     default:
                         Console.WriteLine(Constants.InvalidInputMessage);
                         Console.Clear();
@@ -371,7 +381,8 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                         chosenGun[0].Reload();
                         goto Shoot1;
                     case "0":
-                        return;
+                        chosenGun.Empty();
+                        goto Menu;
                     default:
                         Console.WriteLine(Constants.InvalidInputMessage);
                         Console.Clear();
@@ -379,8 +390,6 @@ _____`--._ ''      . '---'``--._|:::::::|:::::::::::::::::::::::|
                 }
                 chosenGun[0].Reload();
             }
-            Inside:
-            Console.WriteLine();
 
         }
         /// <summary>
